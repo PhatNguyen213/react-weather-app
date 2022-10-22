@@ -1,11 +1,17 @@
 import { API_URLS } from './constants';
 
-const { GET_5DAYS_DAILY_FORECASTS } = API_URLS;
+const { GET_FORECASTS } = API_URLS;
 
 export const weatherSlice = {
   endpoints: builder => ({
-    getForecaseByLocationKey: builder.query({
-      query: locationKey => `${GET_5DAYS_DAILY_FORECASTS}/${locationKey}`,
+    getForecastsByLocationKey: builder.query({
+      query: locationKey => ({
+        url: `${GET_FORECASTS}`,
+        params: {
+          q: locationKey,
+          days: 5,
+        },
+      }),
     }),
   }),
 };

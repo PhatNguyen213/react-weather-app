@@ -1,26 +1,21 @@
-import './App.css';
-import { apiSlice } from '../../apiSlice';
+import { useState } from 'react';
 
-const { useSearchCityQuery } = apiSlice;
+import './App.css';
+import LocationSearch from '../LocationSearch';
+import WeatherForecast from '../WeatherForecast';
 
 function App() {
-  const { data } = useSearchCityQuery('london');
-  console.log(data);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [city, setCity] = useState('');
+  const onChange = value => setSearchTerm(value);
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LocationSearch
+        setCity={setCity}
+        searchTerm={searchTerm}
+        onChange={onChange}
+      />
+      <WeatherForecast city={city} cityName="AAA" />
     </div>
   );
 }
