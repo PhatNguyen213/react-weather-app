@@ -9,13 +9,13 @@ function App() {
   const [city, setCity] = useState('');
   const onChange = value => setSearchTerm(value);
   return (
-    <div className="App">
+    <div className="flex flex-col gap-8 mx-8 mt-20">
       <LocationSearch
-        setCity={setCity}
+        onSelect={setCity}
         searchTerm={searchTerm}
         onChange={onChange}
       />
-      <WeatherForecast city={city} cityName="AAA" />
+      <WeatherForecast city={city} />
     </div>
   );
 }

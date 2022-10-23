@@ -5,7 +5,7 @@ const getSuggestionValue = suggestion => suggestion.name;
 
 const AutoSuggestDropdown = ({
   suggestions = [],
-  value,
+  inputValue,
   onChange,
   onSelect,
 }) => {
@@ -15,7 +15,7 @@ const AutoSuggestDropdown = ({
   };
   const inputProps = {
     placeholder: 'Enter a city',
-    value,
+    value: inputValue,
     onChange: onChangeInput,
   };
 
@@ -32,7 +32,7 @@ const AutoSuggestDropdown = ({
       renderSuggestion={renderSuggestion}
       inputProps={inputProps}
       theme={{
-        container: 'w-fit ml-8 mt-20 relative',
+        container: 'w-fit relative',
         input:
           'font-sans text-base font-light w-60 h-12 px-2.5 py-5 border-solid border border-gray-600 rounded',
         inputFocused: 'outline-none',

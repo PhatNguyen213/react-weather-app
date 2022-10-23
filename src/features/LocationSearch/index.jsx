@@ -3,15 +3,15 @@ import { apiSlice } from '../../apiSlice';
 
 const { useSearchCityQuery } = apiSlice;
 
-const LocationSearch = ({ searchTerm, onChange, setCity }) => {
-  const { data: result } = useSearchCityQuery(searchTerm, {
+const LocationSearch = ({ searchTerm, onChange, onSelect }) => {
+  const { data: suggestions } = useSearchCityQuery(searchTerm, {
     skip: !searchTerm,
   });
   return (
     <AutoSuggestDropdown
-      onSelect={setCity}
-      suggestions={result}
-      value={searchTerm}
+      onSelect={onSelect}
+      suggestions={suggestions}
+      inputValue={searchTerm}
       onChange={onChange}
     />
   );
