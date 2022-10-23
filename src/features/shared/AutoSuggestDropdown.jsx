@@ -23,7 +23,7 @@ const AutoSuggestDropdown = ({
     onSelect(suggestion.name);
   return (
     <Autosuggest
-      suggestions={suggestions || []}
+      suggestions={suggestions}
       shouldRenderSuggestions={(value, reason) => value.trim().length > 0}
       onSuggestionSelected={onSuggestionSelected}
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -31,6 +31,17 @@ const AutoSuggestDropdown = ({
       getSuggestionValue={getSuggestionValue}
       renderSuggestion={renderSuggestion}
       inputProps={inputProps}
+      theme={{
+        container: 'w-fit ml-8 mt-20 relative',
+        input:
+          'font-sans text-base font-light w-60 h-12 px-2.5 py-5 border-solid border border-gray-600 rounded',
+        inputFocused: 'outline-none',
+        suggestionsContainerOpen:
+          'font-sans text-base font-light bg-white absolute top-51px w-72 block border-solid border border-gray-600 z-10',
+        suggestionsList: 'list-none m-0 p-0',
+        suggestion: 'px-2.5 py-5 cursor-pointer',
+        suggestionHighlighted: 'bg-gray-400',
+      }}
     />
   );
 };

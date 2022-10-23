@@ -1,16 +1,18 @@
 import { apiSlice } from '../../apiSlice';
+import { select5DaysForecasts } from './selectors';
+import DayForecast from './DayForecast';
+
 const { useGetForecastsByLocationKeyQuery } = apiSlice;
+
 const WeatherForecast = ({ city }) => {
-  const { data: forecasts } = useGetForecastsByLocationKeyQuery(city, {
+  const { data } = useGetForecastsByLocationKeyQuery(city, {
     skip: !city,
   });
+  const forecasts = select5DaysForecasts(data);
   return (
-    <div>
-      {forecasts?.forecast?.forecastday?.map(day => (
-        <>
-          <div>{day.date}</div>
-          <div>{day.day.avgtemp_c}</div>
-        </>
+    <div className="columns-5">
+      {forecasts?.map(day => (
+        <DayForecast key={day.date} forecast={day} />
       ))}
     </div>
   );
