@@ -1,20 +1,26 @@
-import AutoSuggestDropdown from '../shared/AutoSuggestDropdown';
-import { apiSlice } from '../../apiSlice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const { useSearchCityQuery } = apiSlice;
+import { selectSuggestedLocations } from './selectors';
+import { fetchLocationsFromText } from './actions';
+import LocationSearch from './LocationSearch';
 
-const LocationSearch = ({ searchTerm, onChange, onSelect }) => {
-  const { data: suggestions } = useSearchCityQuery(searchTerm, {
-    skip: !searchTerm,
-  });
+const LocationSearchContainer = ({ searchTerm, onChange, onSelect }) => {
+  const suggestions = useSelector(selectSuggestedLocations);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (searchTerm) dispatch(fetchLocationsFromText(searchTerm));
+  }, [dispatch, searchTerm]);
+
   return (
-    <AutoSuggestDropdown
-      onSelect={onSelect}
+    <LocationSearch
       suggestions={suggestions}
-      inputValue={searchTerm}
+      searchTerm={searchTerm}
       onChange={onChange}
+      onSelect={onSelect}
     />
   );
 };
 
-export default LocationSearch;
+export default LocationSearchContainer;

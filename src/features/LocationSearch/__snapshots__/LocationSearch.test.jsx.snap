@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationSearch renders correctly compare snapshots 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -3,26 +3,55 @@
+      class=\\"css-jqwuv0\\"
+    >
+      Please enter city name below for suggestions
+    </div>
+    <div
+-     aria-expanded=\\"false\\"
++     aria-expanded=\\"true\\"
+      aria-haspopup=\\"listbox\\"
+      aria-owns=\\"react-autowhatever-1\\"
+      class=\\"w-fit relative\\"
+      role=\\"combobox\\"
+    >
+      <input
+        aria-autocomplete=\\"list\\"
+        aria-controls=\\"react-autowhatever-1\\"
+        autocomplete=\\"off\\"
+-       class=\\"font-sans text-base font-light w-60 h-12 px-2.5 py-5 border-solid border border-gray-600 rounded\\"
++       class=\\"font-sans text-base font-light w-60 h-12 px-2.5 py-5 border-solid border border-gray-600 rounded outline-none\\"
+        placeholder=\\"Enter a city\\"
+        type=\\"text\\"
+        value=\\"test\\"
+      />
+      <div
++       class=\\"font-sans text-base font-light bg-white absolute top-51px w-72 block border-solid border border-gray-600 z-10\\"
+        id=\\"react-autowhatever-1\\"
+        role=\\"listbox\\"
+-     />
++     >
++       <ul
++         class=\\"list-none m-0 p-0\\"
++         role=\\"listbox\\"
++       >
++         <li
++           aria-selected=\\"false\\"
++           class=\\"px-2.5 py-5 cursor-pointer\\"
++           data-suggestion-index=\\"0\\"
++           id=\\"react-autowhatever-1--item-0\\"
++           role=\\"option\\"
++         >
++           <div>
++             Test Suggestion
++           </div>
++         </li>
++         <li
++           aria-selected=\\"false\\"
++           class=\\"px-2.5 py-5 cursor-pointer\\"
++           data-suggestion-index=\\"1\\"
++           id=\\"react-autowhatever-1--item-1\\"
++           role=\\"option\\"
++         >
++           <div>
++             Test Suggestion1
++           </div>
++         </li>
++       </ul>
++     </div>
+    </div>
+  </DocumentFragment>"
+`;

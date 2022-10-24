@@ -1,4 +1,11 @@
 import { uniqueId } from 'lodash';
+import { createSelector } from '@reduxjs/toolkit';
+
+const forecastState = state => state.forecast;
+const forecasts = createSelector(
+  forecastState,
+  state => state?.data?.forecast?.forecastday
+);
 
 const fillMissingDays = (arr, numOfMissingDays) => {
   const temp = [];
@@ -8,11 +15,19 @@ const fillMissingDays = (arr, numOfMissingDays) => {
   return arr.concat(temp);
 };
 
-export const selectDaysForecasts = numberOfDays => response => {
-  if (!response) return [];
-  const forecasts = response?.forecast?.forecastday;
-  if (forecasts?.length === numberOfDays) return forecasts;
-  return fillMissingDays(forecasts, numberOfDays - forecasts?.length);
-};
+export const selectDaysForecasts = numberOfDays =>
+  createSelector(forecasts, state => {
+    if (!state) return [];
+    if (state?.length === numberOfDays) return state;
+    return fillMissingDays(state, numberOfDays - state?.length);
+  });
 
-export const selectForecastLocationInfo = response => response?.location;
+export const selectIsFetching = createSelector(
+  forecastState,
+  state => state.loading
+);
+
+export const selectForecastLocationInfo = createSelector(
+  forecastState,
+  state => state?.data?.location
+);

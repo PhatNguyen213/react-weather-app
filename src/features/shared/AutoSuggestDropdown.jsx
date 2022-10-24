@@ -24,7 +24,6 @@ const AutoSuggestDropdown = ({
   return (
     <Autosuggest
       suggestions={suggestions}
-      shouldRenderSuggestions={(value, reason) => value.trim().length > 0}
       onSuggestionSelected={onSuggestionSelected}
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
       onSuggestionsClearRequested={() => onChangeInput(null, { newValue: '' })}

@@ -1,8 +1,13 @@
-import { apiSlice } from '../../apiSlice';
-import { selectDaysForecasts, selectForecastLocationInfo } from './selectors';
+import {
+  selectDaysForecasts,
+  selectForecastLocationInfo,
+  selectIsFetching,
+} from './selectors';
 import DayForecast from './DayForecast';
+import { fetchWeatherForecastForLocation } from './actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-const { useGetForecastsByLocationKeyQuery } = apiSlice;
 const select5DaysForecasts = selectDaysForecasts(5);
 
 const LocationSummary = (props = {}) => {
@@ -23,12 +28,16 @@ const LocationSummary = (props = {}) => {
 const Loading = () => <span>Loading...</span>;
 
 const WeatherForecast = ({ city }) => {
-  const { data, isFetching } = useGetForecastsByLocationKeyQuery(city, {
-    skip: !city,
-  });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (city) dispatch(fetchWeatherForecastForLocation(city));
+  }, [dispatch, city]);
+
+  const forecasts = useSelector(select5DaysForecasts);
+  const isFetching = useSelector(selectIsFetching);
+  const location = useSelector(selectForecastLocationInfo);
   if (isFetching) return <Loading />;
-  const forecasts = select5DaysForecasts(data);
-  const location = selectForecastLocationInfo(data);
   return (
     <>
       <LocationSummary location={location} />
