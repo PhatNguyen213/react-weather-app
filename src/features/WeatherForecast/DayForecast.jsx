@@ -5,7 +5,7 @@ import { CardActionArea } from '@mui/material';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
-const isForecastAvailable = forecast => !!forecast?.day;
+export const isForecastAvailable = forecast => !!forecast?.conditionSummary;
 
 const ForecastCard = ({ children }) => (
   <Card className="grow" sx={{ maxWidth: 345 }}>
@@ -27,14 +27,12 @@ const UnavailableForecast = () => (
 
 const DayForecast = ({ forecast }) => {
   if (!isForecastAvailable(forecast)) return <UnavailableForecast />;
-  const { date, day } = forecast;
-  const { mintemp_c, maxtemp_c, daily_will_it_rain, condition } = day;
-  const { text: summary } = condition;
+  const { date, maxTemp, minTemp, conditionSummary, willItRain } = forecast;
   return (
     <ForecastCard>
       <CardActionArea>
         <CardContent classes={{ root: 'flex justify-center' }}>
-          {daily_will_it_rain ? (
+          {willItRain ? (
             <ThunderstormIcon fontSize="large" />
           ) : (
             <WbSunnyIcon fontSize="large" />
@@ -45,13 +43,13 @@ const DayForecast = ({ forecast }) => {
             {date}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {summary}
+            {conditionSummary}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Min Temperature: {mintemp_c}
+            Min Temperature: {minTemp}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Max Temperature: {maxtemp_c}
+            Max Temperature: {maxTemp}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getLocationsFromText } from '../../api/locationServices';
+import { getLocationsFromText } from '../../api/services/locationServices';
 
 export const fetchLocationsFromText = createAsyncThunk(
   'location/fetchLocationsFromText',

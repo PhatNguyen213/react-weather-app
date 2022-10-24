@@ -4,7 +4,7 @@ import { createSelector } from '@reduxjs/toolkit';
 const forecastState = state => state.forecast;
 const forecasts = createSelector(
   forecastState,
-  state => state?.data?.forecast?.forecastday
+  state => state?.data?.forecasts
 );
 
 const fillMissingDays = (arr, numOfMissingDays) => {

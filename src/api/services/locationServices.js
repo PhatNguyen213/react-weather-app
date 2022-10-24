@@ -1,5 +1,5 @@
-import { get } from './apiClient';
-import { API_URLS } from '../features/LocationSearch/constants';
+import { get } from '../apiClient';
+import { API_URLS } from '../../features/LocationSearch/constants';
 
 const { CITY_SEARCH } = API_URLS;
 
