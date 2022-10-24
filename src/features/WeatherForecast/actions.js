@@ -1,7 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getWeatherForecastForLocation } from '../../api/services/weatherServices';
+import { createAsyncActionCreator } from '../../utils';
 
-export const fetchWeatherForecastForLocation = createAsyncThunk(
+const createAsyncAction = createAsyncActionCreator(
+  'Something is wrong with Weather services'
+);
+
+export const fetchWeatherForecastForLocation = createAsyncAction(
   'weather/fetchWeatherForecastForLocation',
   async locationKey => {
     const { data } = await getWeatherForecastForLocation(locationKey);
