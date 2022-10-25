@@ -5,7 +5,7 @@ import './App.css';
 import LocationSearch from '../LocationSearch';
 import WeatherForecast from '../WeatherForecast';
 import ErrorToast from '../shared/ErrorToast';
-import { selectCurrentError } from './selectors';
+import { selectCurrentError } from './redux/selectors';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');

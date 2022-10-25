@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectSuggestedLocations } from './selectors';
-import { fetchLocationsFromText } from './actions';
+import { selectSuggestedLocations } from './redux/selectors';
+import { fetchLocationsFromText } from './redux/actions';
+import ErrorBouddary from './Error/LocationSearchBoundary';
 import LocationSearch from './LocationSearch';
 
 const LocationSearchContainer = ({ searchTerm, onChange, onSelect }) => {
@@ -14,12 +15,14 @@ const LocationSearchContainer = ({ searchTerm, onChange, onSelect }) => {
   }, [dispatch, searchTerm]);
 
   return (
-    <LocationSearch
-      suggestions={suggestions}
-      searchTerm={searchTerm}
-      onChange={onChange}
-      onSelect={onSelect}
-    />
+    <ErrorBouddary>
+      <LocationSearch
+        suggestions={suggestions}
+        searchTerm={searchTerm}
+        onChange={onChange}
+        onSelect={onSelect}
+      />
+    </ErrorBouddary>
   );
 };
 

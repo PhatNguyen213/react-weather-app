@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import reducer from './reducers';
-import { somethingIsWrong } from './features/App/actions';
+import { somethingIsWrong } from './features/App/redux/actions';
 
-const isRejectedAsyncAction = ({ type }) =>
-  type.includes('ASYNC') && type.includes('/rejected');
+const isRejectedAsyncAction = ({ type, meta }) =>
+  type.includes('ASYNC') && meta.rejectedWithValue;
 
 const errorHandlingMiddleware =
   ({ dispatch }) =>

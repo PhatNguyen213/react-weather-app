@@ -1,5 +1,5 @@
-import { getWeatherForecastForLocation } from '../../api/services/weatherServices';
-import { createAsyncActionCreator } from '../../utils';
+import { getWeatherForecastForLocation } from '../../../api/services/weatherServices';
+import { createAsyncActionCreator } from '../../../utils';
 
 const createAsyncAction = createAsyncActionCreator(
   'Something is wrong with Weather services'

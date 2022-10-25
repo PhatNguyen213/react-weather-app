@@ -1,11 +1,12 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   selectDaysForecasts,
   selectForecastLocationInfo,
   selectIsFetching,
-} from './selectors';
-import { fetchWeatherForecastForLocation } from './actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+} from './redux/selectors';
+import { fetchWeatherForecastForLocation } from './redux/actions';
 import WeatherForecast from './WeatherForecast';
 
 const select5DaysForecasts = selectDaysForecasts(5);
