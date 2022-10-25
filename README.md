@@ -4,23 +4,63 @@
 
 #### Adapters
 
+- Insulate components from changes in Rest APIs.
+
 ## Component Design
 
 #### Clear separation between Smart & Dumb components
 
 #### Composition
 
+- Add new features by extending components (hooks, HOC), not modifying existing components.
+
 #### Dependency Injection
 
-## Centralized Error Handling
+- Receives behavior from props and children.
+
+## Error Handling
+
+#### Centralized Error Handling For Async Requests
+
+- Use custom middleware to intercept "rejected" async action and propagate corresponding custom error message.
+- Use default error message if no custom message is provided.
+- To specify custom error message for an async action, use the exported HOF `createAsyncActionCreator`
+
+```js
+const createAsyncAction = createAsyncActionCreator(
+  'Something is wrong with Weather services'
+);
+
+export const fetchWeatherForecastForLocation = createAsyncAction(
+  'weather/fetchWeatherForecastForLocation',
+  async locationKey => {
+    const { data } = await getWeatherForecastForLocation(locationKey);
+    return data;
+  }
+);
+```
+
+#### Error Bounndary
+
+- Wrap around the whole application tree, or specific subtrees which you want to specify fallback UI when an uncaught error happens.
+- In this app, `LocationSearch` is wrapped inside ErrorBoundary so the rest of the UI still functions normally when an error is catched.
 
 ## Testing
 
-### Unit Testing
+#### Unit Testing
 
-### Snapshot Testing
+- React components should be a Function of State, meaning we can make assertions on the component from the provided props.
+- Unit testing dumb components by providing different sets of props.
 
-### Integration Testing
+#### Snapshot Testing
+
+- Helps to detect unwanted/expected UI changes on components.
+- Snapshots should be small and focused.
+
+#### Integration Testing
+
+- Render specific trees of components fully without mocking Redux store.
+- Tests should simulate how users interact with the application.
 
 # How to run
 
