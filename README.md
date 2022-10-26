@@ -2,6 +2,11 @@
 
 ## Services
 
+#### API Client
+
+- Encapsulate details in using third-party library (`axios`). If we ever change lib in the future, only need to make changes in this client.
+- Expose an interface which services can use to make REST calls.
+
 #### Adapters
 
 - Insulate components from changes in Rest APIs.

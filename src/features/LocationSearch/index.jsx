@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Subject, debounceTime, filter } from 'rxjs';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectSuggestedLocations } from './redux/selectors';
@@ -6,13 +7,26 @@ import { fetchLocationsFromText } from './redux/actions';
 import ErrorBouddary from './Error/LocationSearchBoundary';
 import LocationSearch from './LocationSearch';
 
-const LocationSearchContainer = ({ searchTerm, onChange, onSelect }) => {
+const notEmpty = input => !!input && input.trim().length > 0;
+
+const LocationSearchContainer = ({ onSelect }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchSubject] = useState(new Subject());
   const suggestions = useSelector(selectSuggestedLocations);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (searchTerm) dispatch(fetchLocationsFromText(searchTerm));
-  }, [dispatch, searchTerm]);
+    const subscription = searchSubject
+      .pipe(debounceTime(1000), filter(notEmpty))
+      .subscribe(searchTerm => dispatch(fetchLocationsFromText(searchTerm)));
+
+    return () => subscription.unsubscribe();
+  }, [dispatch, searchSubject]);
+
+  const onChange = value => {
+    setSearchTerm(value);
+    searchSubject.next(value);
+  };
 
   return (
     <ErrorBouddary>

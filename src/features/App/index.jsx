@@ -8,18 +8,12 @@ import ErrorToast from '../shared/ErrorToast';
 import { selectCurrentError } from './redux/selectors';
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [city, setCity] = useState('');
   const currentError = useSelector(selectCurrentError);
-  const onChange = value => setSearchTerm(value);
   return (
     <div className="flex flex-col gap-8 mx-8 mt-20">
       {currentError ? <ErrorToast error={currentError} /> : null}
-      <LocationSearch
-        onSelect={setCity}
-        searchTerm={searchTerm}
-        onChange={onChange}
-      />
+      <LocationSearch onSelect={setCity} />
       <WeatherForecast city={city} />
     </div>
   );
