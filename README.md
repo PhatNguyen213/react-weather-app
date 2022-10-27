@@ -17,6 +17,9 @@ Note: the Weather Forecast API only returns 3 results event if I send `days=5` t
 
 #### Clear separation between Smart & Dumb components
 
+- Smart: connected to Redux, running side-effects.
+- Dumb: renders UI based on received props, with as few side-effects as possible.
+
 #### Composition
 
 - Add new features by extending components (hooks, HOC), not modifying existing components.
@@ -73,4 +76,4 @@ export const fetchWeatherForecastForLocation = createAsyncAction(
 
 - Run `npm install` to install dependencies before running any scripts below.
 - To start the application, run `npm start`
-- To test the application, run `npm test`
+- To unit-test the application, run `npm test`
