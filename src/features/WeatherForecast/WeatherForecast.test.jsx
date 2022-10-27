@@ -2,7 +2,7 @@ import { getAllByText, getByText } from '@testing-library/react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { selectDaysForecasts } from './selectors';
+import { selectDaysForecasts } from './redux/selectors';
 import WeatherForecast from './WeatherForecast';
 import { isForecastAvailable } from './DayForecast';
 
