@@ -28,6 +28,11 @@ Note: the Weather Forecast API only returns 3 results event if I send `days=5` t
 
 - Receives behavior from props and children.
 
+#### Handling input
+
+- It is wasteful to trigger REST APIs (to get location suggestions) every time user enters a character.
+- Use `debounce` operator and model user's input as a stream of data which can be processed using RxJS operators.
+
 ## Error Handling
 
 #### Centralized Error Handling For Async Requests
