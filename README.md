@@ -2,6 +2,8 @@
 
 ## Services
 
+Note: the Weather Forecast API only returns 3 results event if I send `days=5` to get 5-day forecasts (according to their documentation). So the missing forecasts are shown as "Unavailable" placeholder.
+
 #### API Client
 
 - Encapsulate details in using third-party library (`axios`). If we ever change lib in the future, only need to make changes in this client.
